@@ -1,8 +1,10 @@
 import React from "react";
 import { Button, Card } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const TechDetail = ({ tech }) => {
   const { id, name, img, description } = tech;
+
   return (
     <div>
       <div>
@@ -11,7 +13,11 @@ const TechDetail = ({ tech }) => {
           <Card.Body>
             <Card.Title>{name}</Card.Title>
             <Card.Text>{description}</Card.Text>
-            <Button variant="primary">Go somewhere</Button>
+            <Button variant="primary" className="w-100">
+              <Link className="text-white" to={`/tec${id}`}>
+                Read More
+              </Link>
+            </Button>
           </Card.Body>
         </Card>
       </div>
