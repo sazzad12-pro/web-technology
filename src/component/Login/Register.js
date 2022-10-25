@@ -1,9 +1,23 @@
-import React from "react";
+import React, { useContext } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../UseContext/UseContext";
 
 const Register = () => {
+  // useContext googleProvider
+  const { singInGoogle } = useContext(AuthContext);
+  const handleGoogle = () => {
+    singInGoogle()
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
+
   return (
     <div className="w-50 mx-auto">
       <h1 className="fs-3 fw-bold text-primary text-center">Please Register</h1>
@@ -50,7 +64,9 @@ const Register = () => {
         ></div>
       </div>
       <div className="mt-3">
-        <Button className="w-100">Google</Button>
+        <Button onClick={handleGoogle} className="w-100">
+          Google
+        </Button>
       </div>
     </div>
   );
