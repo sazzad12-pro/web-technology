@@ -39,8 +39,11 @@ export const route = createBrowserRouter([
         element: <Register></Register>,
       },
       {
-        path: "/tec/:id",
+        path: "/tec/:userId",
         element: <Detail></Detail>,
+        loader: async ({ params }) => {
+          return fetch(`http://localhost:5000/technology/${params.userId}`);
+        },
       },
     ],
   },

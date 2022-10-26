@@ -7,6 +7,7 @@ import TechDetailLayOut from "./TechDetailLayOut";
 
 const Tech = () => {
   const technology = useLoaderData();
+  console.log(technology);
 
   return (
     <div className="mt-3">

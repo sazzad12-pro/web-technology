@@ -14,7 +14,7 @@ const TechDetail = ({ tech }) => {
             <Card.Title>{name}</Card.Title>
             <Card.Text>{description}</Card.Text>
             <Button variant="primary" className="w-100">
-              <Link className="text-white" to={`/tec${id}`}>
+              <Link className="text-white" to={`/tec/${id}`}>
                 Read More
               </Link>
             </Button>

@@ -1,12 +1,25 @@
 import React from "react";
+import { useContext } from "react";
 import { Image } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { Link } from "react-router-dom";
+import ReactSwitch from "react-switch";
 import logo from "../../image/logo (2).png";
+import { AuthContext } from "../../UseContext/UseContext";
 
 const Header = () => {
+  const { user, logOut, toggleTheme, theme } = useContext(AuthContext);
+  const singOutUser = () => {
+    logOut()
+      .then(() => {
+        // sing out successful
+      })
+      .catch((err) => {
+        // error
+      });
+  };
   return (
     <div>
       <Navbar collapseOnSelect expand="lg" bg="light">
@@ -28,9 +41,25 @@ const Header = () => {
               </Link>
             </Nav>
             <Nav>
-              <Link className="text-decoration-none me-5 fw-bold" to="/login">
-                Login
-              </Link>
+              {user ? (
+                <Link
+                  onClick={singOutUser}
+                  className="text-decoration-none me-5 fw-bold"
+                >
+                  Log out
+                </Link>
+              ) : (
+                <Link className="text-decoration-none me-5 fw-bold" to="/login">
+                  Login
+                </Link>
+              )}
+
+              {user ? <p className="me-3">{user.displayName}</p> : ""}
+              <ReactSwitch
+                onChange={toggleTheme}
+                checked={theme === "dark"}
+              ></ReactSwitch>
+              <label> {theme === "light" ? "Light Mode" : "Dark Mode"}</label>
             </Nav>
           </Navbar.Collapse>
         </Container>
