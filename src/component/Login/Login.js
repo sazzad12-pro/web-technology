@@ -4,7 +4,7 @@ import { useContext } from "react";
 
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../UseContext/UseContext";
 
@@ -14,13 +14,15 @@ const Login = () => {
   // useContext use
   const { singInGoogle, logInEmailPassword } = useContext(AuthContext);
   const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
   // Google sing in
   const handleGoogle = () => {
     singInGoogle()
       .then((result) => {
         const user = result.user;
         console.log(user);
-        navigate("/");
+        navigate(from, { replace: true });
       })
       .catch((err) => {
         console.error(err);
@@ -39,6 +41,8 @@ const Login = () => {
         const user = userCredential.user;
         console.log(user);
         toast("successfully login");
+        navigate(from, { replace: true });
+        // navigate("/");
       })
       .catch((err) => {
         console.error(err);

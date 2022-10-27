@@ -7,10 +7,9 @@ const TechDetailLayOut = ({ tech }) => {
   return (
     <div>
       <ListGroup>
-        <ListGroup.Item className="mt-3 ">
-          {" "}
-          <Link to={`/tec/${id}`}>{name}</Link>{" "}
-        </ListGroup.Item>
+        <Link className="text-decoration-none" to={`/tec/${id}`}>
+          <ListGroup.Item className="mt-3 list fw-bold">{name}</ListGroup.Item>
+        </Link>
       </ListGroup>
     </div>
   );

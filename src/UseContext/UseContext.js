@@ -28,19 +28,23 @@ const UseContext = ({ children }) => {
   };
   // user state set
   const [user, setUser] = useState(null);
+  const [lodding, setLoading] = useState(true);
   // Google Provider
   const googleProvider = new GoogleAuthProvider();
   const singInGoogle = () => {
+    setLoading(true);
     return signInWithPopup(auth, googleProvider);
   };
 
   // Createuser
   const singUpUser = (email, password) => {
+    setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
   };
 
   // login email and password
   const logInEmailPassword = (email, password) => {
+    setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
 
@@ -51,12 +55,14 @@ const UseContext = ({ children }) => {
 
   // sing out user
   const logOut = () => {
-    signOut(auth);
+    setLoading(true);
+    return signOut(auth);
   };
   // side effect start
   useEffect(() => {
     const unscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
+      setLoading(false);
     });
     return () => unscribe();
   }, []);
@@ -72,6 +78,7 @@ const UseContext = ({ children }) => {
         updateNamePhoto,
         theme,
         toggleTheme,
+        lodding,
       }}
     >
       {children}

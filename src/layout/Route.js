@@ -1,8 +1,10 @@
 import { createBrowserRouter } from "react-router-dom";
+import AllDetails from "../component/Detail/AllDetails";
 import Detail from "../component/Detail/Detail";
 import Home from "../component/Home/Home";
 import Login from "../component/Login/Login";
 import Register from "../component/Login/Register";
+import PriveteRoute from "../component/PriveteRoute/PriveteRoute";
 import Blog from "../Pages/Blog";
 import Faq from "../Pages/Faq";
 import Tech from "../Pages/Tech";
@@ -43,6 +45,18 @@ export const route = createBrowserRouter([
         element: <Detail></Detail>,
         loader: async ({ params }) => {
           return fetch(`http://localhost:5000/technology/${params.userId}`);
+        },
+      },
+      {
+        path: "/checkout/:usersId",
+        element: (
+          <PriveteRoute>
+            {" "}
+            <AllDetails></AllDetails>
+          </PriveteRoute>
+        ),
+        loader: async ({ params }) => {
+          return fetch(`http://localhost:5000/details/${params.usersId}`);
         },
       },
     ],
