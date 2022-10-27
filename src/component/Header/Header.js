@@ -11,6 +11,7 @@ import { AuthContext } from "../../UseContext/UseContext";
 
 const Header = () => {
   const { user, logOut, toggleTheme, theme } = useContext(AuthContext);
+
   const singOutUser = () => {
     logOut()
       .then(() => {
@@ -54,7 +55,15 @@ const Header = () => {
                 </Link>
               )}
 
-              {user ? <p className="me-3">{user.displayName}</p> : ""}
+              {user ? (
+                <>
+                  <p className="me-3">{user.displayName}</p>
+                  <Image className="img" rounded src={user.photoURL}></Image>
+                </>
+              ) : (
+                ""
+              )}
+
               <ReactSwitch
                 onChange={toggleTheme}
                 checked={theme === "dark"}

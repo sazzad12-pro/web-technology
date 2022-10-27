@@ -6,6 +6,7 @@ import {
   getAuth,
   GoogleAuthProvider,
   onAuthStateChanged,
+  sendPasswordResetEmail,
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
@@ -58,6 +59,11 @@ const UseContext = ({ children }) => {
     setLoading(true);
     return signOut(auth);
   };
+  // forget password
+  const forgetPassword = (email) => {
+    setLoading(true);
+    return sendPasswordResetEmail(auth, email);
+  };
   // side effect start
   useEffect(() => {
     const unscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -79,6 +85,7 @@ const UseContext = ({ children }) => {
         theme,
         toggleTheme,
         lodding,
+        forgetPassword,
       }}
     >
       {children}

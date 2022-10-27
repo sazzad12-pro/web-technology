@@ -10,9 +10,11 @@ import { AuthContext } from "../../UseContext/UseContext";
 
 const Login = () => {
   const [error, setError] = useState("");
+  const [userEmail, setEmail] = useState("");
 
   // useContext use
-  const { singInGoogle, logInEmailPassword } = useContext(AuthContext);
+  const { singInGoogle, logInEmailPassword, forgetPassword } =
+    useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
@@ -35,19 +37,33 @@ const Login = () => {
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
-    console.log(email, password);
+
     logInEmailPassword(email, password)
       .then((userCredential) => {
         const user = userCredential.user;
         console.log(user);
         toast("successfully login");
         navigate(from, { replace: true });
-        // navigate("/");
       })
       .catch((err) => {
         console.error(err);
         toast("something is wrong try agin");
         setError(err.message);
+      });
+  };
+  // reset email
+  const emailChange = (e) => {
+    const email = e.target.value;
+    setEmail(email);
+  };
+  const handleForget = () => {
+    forgetPassword(userEmail)
+      .then(() => {
+        // rest email
+        toast("check your email");
+      })
+      .catch((err) => {
+        console.error(err);
       });
   };
 
@@ -57,7 +73,12 @@ const Login = () => {
       <Form onSubmit={logInUser}>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>
-          <Form.Control name="email" type="email" placeholder="Enter email" />
+          <Form.Control
+            onBlur={emailChange}
+            name="email"
+            type="email"
+            placeholder="Enter email"
+          />
           <Form.Text className="text-muted">
             We'll never share your email with anyone else.
           </Form.Text>
@@ -76,7 +97,7 @@ const Login = () => {
         <Button className="w-100" variant="primary" type="submit">
           Login
         </Button>
-        <h5 className="mt-1">Forget Your Password</h5>
+        <Link onClick={handleForget}>Forget Your Password</Link>
         <h5>
           No Account<Link to="/register"> Register</Link>{" "}
         </h5>
