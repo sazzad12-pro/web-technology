@@ -1,12 +1,15 @@
 import React from "react";
+import { ListGroup } from "react-bootstrap";
 import { useLoaderData } from "react-router-dom";
 
 const AllDetails = () => {
   const alldetailsData = useLoaderData();
-  const { id } = alldetailsData;
+  const { id, name } = alldetailsData;
   return (
-    <div>
-      <h1> {id}</h1>
+    <div className="w-50 mx-auto mt-3">
+      <ListGroup>
+        <ListGroup.Item> {name}</ListGroup.Item>
+      </ListGroup>
     </div>
   );
 };

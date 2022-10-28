@@ -22,7 +22,7 @@ export const route = createBrowserRouter([
       {
         path: "/tech",
         element: <Tech></Tech>,
-        loader: () => fetch("http://localhost:5000/tech"),
+        loader: () => fetch("https://my-app-ashen-seven.vercel.app/tech"),
       },
       {
         path: "/faq",
@@ -44,7 +44,9 @@ export const route = createBrowserRouter([
         path: "/tec/:userId",
         element: <Detail></Detail>,
         loader: async ({ params }) => {
-          return fetch(`http://localhost:5000/technology/${params.userId}`);
+          return fetch(
+            `https://my-app-ashen-seven.vercel.app/technology/${params.userId}`
+          );
         },
       },
       {
@@ -56,7 +58,9 @@ export const route = createBrowserRouter([
           </PriveteRoute>
         ),
         loader: async ({ params }) => {
-          return fetch(`http://localhost:5000/details/${params.usersId}`);
+          return fetch(
+            `https://my-app-ashen-seven.vercel.app/details/${params.usersId}`
+          );
         },
       },
     ],
