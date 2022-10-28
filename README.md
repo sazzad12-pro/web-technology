@@ -1,6 +1,10 @@
-# Getting Started with Create React App
+# clint site Repo link
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+https://github.com/programming-hero-web-course1/b610-learning-platform-client-side-sazzad12-pro
+
+# server site Repo link
+
+https://github.com/programming-hero-web-course1/b610-lerning-platform-server-side-sazzad12-pro
 
 ## Available Scripts
 

@@ -1,6 +1,6 @@
 import React from "react";
 import { useContext } from "react";
-import { Image } from "react-bootstrap";
+import { Image, Tooltip } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
@@ -32,7 +32,7 @@ const Header = () => {
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto ">
               <Link to="/tech" className="text-decoration-none me-5 fw-bold">
-                Tech
+                Technology
               </Link>
               <Link to="/faq" className="text-decoration-none me-5 fw-bold">
                 FAQ
@@ -58,6 +58,7 @@ const Header = () => {
               {user ? (
                 <>
                   <p className="me-3">{user.displayName}</p>
+
                   <Image className="img" rounded src={user.photoURL}></Image>
                 </>
               ) : (

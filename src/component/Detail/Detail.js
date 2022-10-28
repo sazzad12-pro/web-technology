@@ -24,6 +24,7 @@ const Detail = () => {
           </Link>
         </Card>
       </div>
+      <div></div>
     </div>
   );
 };

@@ -4,6 +4,7 @@ import Detail from "../component/Detail/Detail";
 import Home from "../component/Home/Home";
 import Login from "../component/Login/Login";
 import Register from "../component/Login/Register";
+import NotFound from "../component/NotFound/NotFound";
 import PriveteRoute from "../component/PriveteRoute/PriveteRoute";
 import Blog from "../Pages/Blog";
 import Faq from "../Pages/Faq";
@@ -62,6 +63,10 @@ export const route = createBrowserRouter([
             `https://my-app-ashen-seven.vercel.app/details/${params.usersId}`
           );
         },
+      },
+      {
+        path: "*",
+        element: <NotFound></NotFound>,
       },
     ],
   },
